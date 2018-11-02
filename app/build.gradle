@@ -13,10 +13,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,4 +42,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //implementation 'com.classic.common:multiple-status-view:1.2'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'org.litepal.android:core:2.0.0'
+    implementation  'com.tencent.bugly:crashreport_upgrade:1.3.5'
+    implementation 'com.tencent.bugly:nativecrashreport:3.3.1'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.just.agentweb:agentweb:4.0.2'
+    //implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
 }
