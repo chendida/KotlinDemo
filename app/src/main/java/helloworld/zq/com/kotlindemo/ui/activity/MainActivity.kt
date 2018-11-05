@@ -1,8 +1,9 @@
-package helloworld.zq.com.kotlindemo
+package helloworld.zq.com.kotlindemo.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import helloworld.zq.com.kotlindemo.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

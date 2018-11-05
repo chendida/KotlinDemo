@@ -3,8 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="textColorPrimary">#616161</color>
 
     <color name="transparent_75">#ba000000</color>
     <color name="white">#FFFFFF</color>
     <color name="Red">#f44336</color>
+    <color name="list_divider">#bdbdbd</color>
 </resources>
