@@ -56,7 +56,9 @@ dependencies {
     implementation 'com.just.agentweb:agentweb:4.0.2'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.afollestad.material-dialogs:commons:0.9.4.4'
-
+    //滑动返回
+    implementation 'com.cxz:swipeback:1.0.1'
+    //rx系列
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     //implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
 }
