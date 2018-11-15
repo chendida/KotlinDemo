@@ -1,5 +1,6 @@
 package helloworld.zq.com.kotlindemo.mvp.presenter
 
+import com.cxz.wanandroid.http.exception.ExceptionHandle
 import helloworld.zq.com.kotlindemo.base.BasePresenter
 import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.mvp.model.MainModel
@@ -25,7 +26,7 @@ class MainPresenter : BasePresenter<MainContract.View>(),MainContract.Presenter 
                 },{t ->
                     mView?.apply {
                         hideLoading()
-                        //showError(ExceptionHa)
+                        showError(ExceptionHandle.handleException(t))
                     }
                 })
         addSubscription(disposable)
