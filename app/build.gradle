@@ -62,5 +62,12 @@ dependencies {
     implementation 'com.cxz:swipeback:1.0.1'
     //rx系列
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
-    //implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    //retrofit系列
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    //json解析
+    implementation 'com.squareup.moshi:moshi:1.7.0'
 }

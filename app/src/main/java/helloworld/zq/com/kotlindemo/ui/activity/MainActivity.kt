@@ -8,10 +8,24 @@ import com.tencent.bugly.beta.Beta
 import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.base.BaseActivity
 import helloworld.zq.com.kotlindemo.constant.Constant
+import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.utils.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(),MainContract.View {
+
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun showLogoutSuccess(success: Boolean) {
+    }
+
+    override fun showError(errMsg: String) {
+    }
 
     override fun attachLayoutRes(): Int = R.layout.activity_main
 

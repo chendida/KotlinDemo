@@ -1,6 +1,8 @@
 package helloworld.zq.com.kotlindemo.constant
 
 object Constant {
+    const val BASE_URL = "http://www.wanandroid.com/"
+
     const val LOGIN_KEY = "login"
     const val USERNAME_KEY = "username"
     const val PASSWORD_KEY = "password"
