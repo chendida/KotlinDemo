@@ -9,11 +9,32 @@ import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.base.BaseActivity
 import helloworld.zq.com.kotlindemo.constant.Constant
 import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
+import helloworld.zq.com.kotlindemo.mvp.presenter.MainPresenter
+import helloworld.zq.com.kotlindemo.ui.fragment.*
 import helloworld.zq.com.kotlindemo.utils.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-class MainActivity : BaseActivity(),MainContract.View {
 
+class MainActivity : BaseActivity(),MainContract.View {
+    private val BOTTOM_INDEX : String = "bottom_index"
+
+    private val FRAGMENT_HOME = 0x01
+    private val FRAGMENT_KNOWLEDGE = 0x02
+    private val FRAGMENT_WECHAT = 0x03
+    private val FRAGMENT_NAVIGATION = 0x04
+    private val FRAGMENT_PROJECT = 0x05
+
+    private var mIndex = FRAGMENT_HOME
+
+    private var mHomeFragment : HomeFragment? = null
+    private var mKnowledgeTreeFragment : KnowledgeTreeFragment? = null
+    private var mWeChatFragment : WeChatFragment? = null
+    private var mNavigationFragment : NavigationFragment? = null
+    private var mProjectFragment : ProjectFragment? = null
+
+    private val mPresenter : MainPresenter by lazy {
+        MainPresenter()
+    }
 
     override fun showLoading() {
     }

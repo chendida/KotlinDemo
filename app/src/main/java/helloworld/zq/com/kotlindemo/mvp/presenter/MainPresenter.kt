@@ -4,7 +4,6 @@ import com.cxz.wanandroid.http.exception.ExceptionHandle
 import helloworld.zq.com.kotlindemo.base.BasePresenter
 import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.mvp.model.MainModel
-import io.reactivex.internal.util.ExceptionHelper
 
 class MainPresenter : BasePresenter<MainContract.View>(),MainContract.Presenter {
 
