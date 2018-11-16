@@ -1,5 +1,6 @@
 package helloworld.zq.com.kotlindemo.ui.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
@@ -14,6 +15,7 @@ import helloworld.zq.com.kotlindemo.constant.Constant
 import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.mvp.presenter.MainPresenter
 import helloworld.zq.com.kotlindemo.ui.fragment.*
+import helloworld.zq.com.kotlindemo.utils.DialogUtil
 import helloworld.zq.com.kotlindemo.utils.Preference
 import helloworld.zq.com.kotlindemo.utils.SettingUtil
 import helloworld.zq.com.kotlindemo.utils.showToast
@@ -311,11 +313,19 @@ class MainActivity : BaseActivity(),MainContract.View {
                 }
                 true
             }
+    private val mDialog by lazy {
+        DialogUtil.getWaitDialog(this,resources.getString(R.string.logout_ing))
+    }
 
     /**
      * 退出登录
      */
     private fun logout() {
+        DialogUtil.getConfirmDialog(this,resources.getString(R.string.confirm_logout),
+                DialogInterface.OnClickListener{_,_->
+                    mDialog.show()
+                    mPresenter.logout()
+                }).show()
     }
 
     override fun start() {
