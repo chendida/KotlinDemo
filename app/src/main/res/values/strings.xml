@@ -28,4 +28,6 @@
     <string name="logout_success">已退出登录</string>
     <string name="action_search">搜索</string>
     <string name="exit_tip">再按一次退出程序</string>
+    <string name="top_tip">置顶</string>
+    <string name="new_fresh">新</string>
 </resources>
