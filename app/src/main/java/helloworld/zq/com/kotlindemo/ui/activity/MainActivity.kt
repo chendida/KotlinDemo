@@ -2,6 +2,7 @@ package helloworld.zq.com.kotlindemo.ui.activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.design.widget.BottomNavigationView
@@ -20,6 +21,7 @@ import helloworld.zq.com.kotlindemo.base.BaseActivity
 import helloworld.zq.com.kotlindemo.constant.Constant
 import helloworld.zq.com.kotlindemo.event.ColorEvent
 import helloworld.zq.com.kotlindemo.event.LoginEvent
+import helloworld.zq.com.kotlindemo.event.RefreshEvent
 import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.mvp.presenter.MainPresenter
 import helloworld.zq.com.kotlindemo.ui.fragment.*
@@ -30,6 +32,8 @@ import helloworld.zq.com.kotlindemo.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.lang.Exception
@@ -54,6 +58,8 @@ class MainActivity : BaseActivity(),MainContract.View {
     private val mPresenter : MainPresenter by lazy {
         MainPresenter()
     }
+
+    override fun useEventBus(): Boolean = true
 
     override fun showLoading() {
     }
@@ -464,6 +470,33 @@ class MainActivity : BaseActivity(),MainContract.View {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun loginEvent(event: LoginEvent){
+        if (event.isLogin){
+            nav_username?.text = username
+            nav_view.menu.findItem(R.id.nav_logout).isVisible = true
+        }else{
+            nav_username?.text = resources.getString(R.string.login)
+            nav_view.menu.findItem(R.id.nav_logout).isVisible = false
+        }
+        mHomeFragment?.lazyLoad()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun refreshHomeEvent(event:RefreshEvent){
+        if (event.isRefresh){
+            mHomeFragment?.lazyLoad()
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun refreshColorEvent(event: ColorEvent){
+        if (event.isRefresh){
+            nav_view.getHeaderView(0).setBackgroundColor(mThemeColor)
+            floating_action_btn.backgroundTintList = ColorStateList.valueOf(mThemeColor)
+        }
     }
 
     override fun onDestroy() {
