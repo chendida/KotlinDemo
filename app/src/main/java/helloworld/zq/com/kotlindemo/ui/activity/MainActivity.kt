@@ -1,8 +1,11 @@
 package helloworld.zq.com.kotlindemo.ui.activity
 
+import android.content.Intent
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatDelegate
 import android.widget.TextView
 import com.tencent.bugly.beta.Beta
 import helloworld.zq.com.kotlindemo.R
@@ -12,6 +15,8 @@ import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.mvp.presenter.MainPresenter
 import helloworld.zq.com.kotlindemo.ui.fragment.*
 import helloworld.zq.com.kotlindemo.utils.Preference
+import helloworld.zq.com.kotlindemo.utils.SettingUtil
+import helloworld.zq.com.kotlindemo.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -62,10 +67,12 @@ class MainActivity : BaseActivity(),MainContract.View {
     private var nav_username: TextView? = null
 
     override fun initData() {
+        //版本检测
         Beta.checkUpgrade(false,false)
     }
 
     override fun initView() {
+        mPresenter.attachView(this)
         toolbar.run {
             title = getString(R.string.app_name)
             setSupportActionBar(this)
@@ -134,29 +141,102 @@ class MainActivity : BaseActivity(),MainContract.View {
     }
 
     /**
+     * 展示fragment
+     * @param index
+     */
+    private fun showFragment(index : Int){
+        val transaction  = supportFragmentManager.beginTransaction()
+        hideFragment(transaction)
+        when(index){
+            FRAGMENT_HOME //首页
+            -> {
+                toolbar.title = getString(R.string.app_name)
+                if (mHomeFragment == null){
+                    mHomeFragment = HomeFragment.getInstance()
+                    transaction.add(R.id.container,mHomeFragment!!,"home")
+                }else{
+                    transaction.show(mHomeFragment!!)
+                }
+            }
+            FRAGMENT_KNOWLEDGE // 知识体系
+            -> {
+                toolbar.title = getString(R.string.knowledge_system)
+                if (mKnowledgeTreeFragment == null){
+                    mKnowledgeTreeFragment = KnowledgeTreeFragment.getInstance()
+                    transaction.add(R.id.container,mKnowledgeTreeFragment!!,"knowledge")
+                }else{
+                    transaction.show(mKnowledgeTreeFragment!!)
+                }
+            }
+            FRAGMENT_WECHAT //公众号
+            -> {
+                toolbar.title = getString(R.string.wechat)
+                if (mWeChatFragment == null){
+                    mWeChatFragment = WeChatFragment.getInstance()
+                    transaction.add(R.id.container,mWeChatFragment!!,"weChat")
+                }else{
+                    transaction.show(mWeChatFragment!!)
+                }
+            }
+            FRAGMENT_NAVIGATION //导航
+            -> {
+                toolbar.title = getString(R.string.navigation)
+                if (mNavigationFragment == null){
+                    mNavigationFragment = NavigationFragment.getInstance()
+                    transaction.add(R.id.container,mNavigationFragment!!,"navigation")
+                }else{
+                    transaction.show(mNavigationFragment!!)
+                }
+            }
+            FRAGMENT_PROJECT //项目
+            -> {
+                toolbar.title = getString(R.string.project)
+                if (mProjectFragment == null){
+                    mProjectFragment = ProjectFragment.getInstance()
+                    transaction.add(R.id.container,mProjectFragment!!,"project")
+                }else{
+                    transaction.show(mProjectFragment!!)
+                }
+            }
+        }
+        transaction.commit()
+    }
+
+    /**
+     * 隐藏所有的fragment
+     */
+    private fun hideFragment(transaction: FragmentTransaction) {
+        mHomeFragment?.let { transaction.hide(it) }
+        mKnowledgeTreeFragment?.let { transaction.hide(it) }
+        mWeChatFragment?.let { transaction.hide(it) }
+        mNavigationFragment?.let { transaction.hide(it) }
+        mProjectFragment?.let { transaction.hide(it) }
+    }
+
+    /**
      * NavigationItemSelect监听
      */
     private val onNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 return@OnNavigationItemSelectedListener when (item.itemId) {
                     R.id.action_home -> {
-                        //showFragment(FRAGMENT_HOME)
+                        showFragment(FRAGMENT_HOME)
                         true
                     }
                     R.id.action_knowledge_system -> {
-                        //showFragment(FRAGMENT_KNOWLEDGE)
+                        showFragment(FRAGMENT_KNOWLEDGE)
                         true
                     }
                     R.id.action_navigation -> {
-                        //showFragment(FRAGMENT_NAVIGATION)
+                        showFragment(FRAGMENT_NAVIGATION)
                         true
                     }
                     R.id.action_project -> {
-                        //showFragment(FRAGMENT_PROJECT)
+                        showFragment(FRAGMENT_PROJECT)
                         true
                     }
                     R.id.action_wechat -> {
-                        //showFragment(FRAGMENT_WECHAT)
+                        showFragment(FRAGMENT_WECHAT)
                         true
                     }
                     else -> {
@@ -172,65 +252,71 @@ class MainActivity : BaseActivity(),MainContract.View {
     private val onDrawerNavigationItemSelectedListener =
             NavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.nav_collect -> {
+                    R.id.nav_collect -> {//收藏
                         if (isLogin) {
-                            /*Intent(this@MainActivity, CommonActivity::class.java).run {
+                            Intent(this@MainActivity, CommonActivity::class.java).run {
                                 putExtra(Constant.TYPE_KEY, Constant.Type.COLLECT_TYPE_KEY)
                                 startActivity(this)
-                            }*/
+                            }
                         } else {
-                            /*showToast(resources.getString(R.string.login_tint))
+                            showToast(resources.getString(R.string.login_tint))
                             Intent(this@MainActivity, LoginActivity::class.java).run {
                                 startActivity(this)
-                            }*/
+                            }
                         }
                         // drawer_layout.closeDrawer(GravityCompat.START)
                     }
-                    R.id.nav_setting -> {
-                        /*Intent(this@MainActivity, SettingActivity::class.java).run {
+                    R.id.nav_setting -> {//设置
+                        Intent(this@MainActivity, SettingActivity::class.java).run {
                             // putExtra(Constant.TYPE_KEY, Constant.Type.SETTING_TYPE_KEY)
                             startActivity(this)
-                        }*/
-                        // drawer_layout.closeDrawer(GravityCompat.START)
+                        }
+                        //drawer_layout.closeDrawer(GravityCompat.START)
                     }
                     R.id.nav_about_us -> {
-                        /*Intent(this@MainActivity, CommonActivity::class.java).run {
+                        Intent(this@MainActivity, CommonActivity::class.java).run {
                             putExtra(Constant.TYPE_KEY, Constant.Type.ABOUT_US_TYPE_KEY)
                             startActivity(this)
-                        }*/
+                        }
                         // drawer_layout.closeDrawer(GravityCompat.START)
                     }
                     R.id.nav_logout -> {
-                        //logout()
+                        logout()
                         // drawer_layout.closeDrawer(GravityCompat.START)
                     }
                     R.id.nav_night_mode -> {
-                        /*if (SettingUtil.getIsNightMode()) {
+                        if (SettingUtil.getIsNightMode()) {
                             SettingUtil.setIsNightMode(false)
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                         } else {
                             SettingUtil.setIsNightMode(true)
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         }
-                        window.setWindowAnimations(R.style.WindowAnimationFadeInOut)*/
+                        window.setWindowAnimations(R.style.WindowAnimationFadeInOut)
                         recreate()
                     }
                     R.id.nav_todo -> {
                         if (isLogin) {
-                            /*Intent(this@MainActivity, TodoActivity::class.java).run {
+                            Intent(this@MainActivity, TodoActivity::class.java).run {
                                 startActivity(this)
-                            }*/
+                            }
                         } else {
-                            /*showToast(resources.getString(R.string.login_tint))
+                            showToast(resources.getString(R.string.login_tint))
                             Intent(this@MainActivity, LoginActivity::class.java).run {
                                 startActivity(this)
-                            }*/
+                            }
                         }
                         // drawer_layout.closeDrawer(GravityCompat.START)
                     }
                 }
                 true
             }
+
+    /**
+     * 退出登录
+     */
+    private fun logout() {
+    }
 
     override fun start() {
     }

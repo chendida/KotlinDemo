@@ -22,6 +22,15 @@
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme.NoActionBar"></style>
+
+    <style name="AppTheme.FullScreen" parent="@style/Theme.AppCompat.DayNight">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
     <!-- 浮动窗口动画 -->
     <style name="anim_float_view">
         <item name="android:windowEnterAnimation">@anim/push_up_in</item>
@@ -40,4 +49,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="WindowAnimationFadeInOut">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
 </resources>
