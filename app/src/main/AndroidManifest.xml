@@ -44,10 +44,12 @@
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask" />
         <activity android:name=".ui.activity.CommonActivity" />
-        <activity android:name=".ui.activity.LoginActivity"
-            android:theme="@style/AppTheme.FullScreen"/>
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:theme="@style/AppTheme.FullScreen" />
         <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.TodoActivity"/>
+        <activity android:name=".ui.activity.TodoActivity" />
+        <activity android:name=".ui.activity.SearchActivity"/>
     </application>
 
 </manifest>

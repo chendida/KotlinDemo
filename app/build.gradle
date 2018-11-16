@@ -60,9 +60,10 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.4.4'
     //滑动返回
     implementation 'com.cxz:swipeback:1.0.1'
-    //rx系列
+    //rxJava系列
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'org.jetbrains.anko:anko:0.10.7'
     //retrofit系列
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'

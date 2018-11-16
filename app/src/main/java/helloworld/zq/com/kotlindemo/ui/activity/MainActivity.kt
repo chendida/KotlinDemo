@@ -2,16 +2,24 @@ package helloworld.zq.com.kotlindemo.ui.activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatDelegate
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import com.tencent.bugly.beta.Beta
 import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.base.BaseActivity
 import helloworld.zq.com.kotlindemo.constant.Constant
+import helloworld.zq.com.kotlindemo.event.ColorEvent
+import helloworld.zq.com.kotlindemo.event.LoginEvent
 import helloworld.zq.com.kotlindemo.mvp.contract.MainContract
 import helloworld.zq.com.kotlindemo.mvp.presenter.MainPresenter
 import helloworld.zq.com.kotlindemo.ui.fragment.*
@@ -21,6 +29,10 @@ import helloworld.zq.com.kotlindemo.utils.SettingUtil
 import helloworld.zq.com.kotlindemo.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.greenrobot.eventbus.EventBus
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import java.lang.Exception
 
 class MainActivity : BaseActivity(),MainContract.View {
     private val BOTTOM_INDEX : String = "bottom_index"
@@ -49,10 +61,28 @@ class MainActivity : BaseActivity(),MainContract.View {
     override fun hideLoading() {
     }
 
+    /**
+     * 退出登录成功后的处理
+     */
     override fun showLogoutSuccess(success: Boolean) {
+        if (success){
+            doAsync {
+                Preference.clearPreference()
+                uiThread { // anko库中的异步操作，只是持有外部Activity的弱引用，防止内存泄漏
+                    mDialog.dismiss()
+                    showToast(resources.getString(R.string.logout_success))
+                    isLogin = false
+                    EventBus.getDefault().post(LoginEvent(false))
+                    Intent(this@MainActivity,LoginActivity::class.java).run {
+                        startActivity(this)
+                    }
+                }
+            }
+        }
     }
 
     override fun showError(errMsg: String) {
+        showToast(errMsg)
     }
 
     override fun attachLayoutRes(): Int = R.layout.activity_main
@@ -71,6 +101,22 @@ class MainActivity : BaseActivity(),MainContract.View {
     override fun initData() {
         //版本检测
         Beta.checkUpgrade(false,false)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putInt(BOTTOM_INDEX,mIndex)
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null){
+            mIndex = savedInstanceState?.getInt(BOTTOM_INDEX)
+        }
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun initColor() {
+        super.initColor()
+        ColorEvent(true)
     }
 
     override fun initView() {
@@ -103,19 +149,42 @@ class MainActivity : BaseActivity(),MainContract.View {
             }
             setOnClickListener {
                 if (!isLogin) {
-                    /*Intent(this@MainActivity, LoginActivity::class.java).run {
+                    Intent(this@MainActivity, LoginActivity::class.java).run {
                         startActivity(this)
-                    }*/
+                    }
                 } else {
 
                 }
             }
         }
 
-        //showFragment(mIndex)
+        showFragment(mIndex)
 
         floating_action_btn.run {
-            //setOnClickListener(onFABClickListener)
+            setOnClickListener(onFABClickListener)
+        }
+    }
+
+    /**
+     * FAB 监听
+     */
+    private val onFABClickListener = View.OnClickListener {
+        when (mIndex) {
+            FRAGMENT_HOME -> {
+                //mHomeFragment?.scrollToTop()
+            }
+            FRAGMENT_KNOWLEDGE -> {
+                //mKnowledgeTreeFragment?.scrollToTop()
+            }
+            FRAGMENT_NAVIGATION -> {
+                //mNavigationFragment?.scrollToTop()
+            }
+            FRAGMENT_PROJECT -> {
+                //mProjectFragment?.scrollToTop()
+            }
+            FRAGMENT_WECHAT -> {
+                //mWeChatFragment?.scrollToTop()
+            }
         }
     }
 
@@ -329,5 +398,81 @@ class MainActivity : BaseActivity(),MainContract.View {
     }
 
     override fun start() {
+    }
+
+    /**
+     * 内存重启和夜间和日间模式切换时调用
+     */
+    override fun recreate() {
+        try {
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            if (mHomeFragment != null){
+                fragmentTransaction.remove(mHomeFragment!!)
+            }
+            if (mKnowledgeTreeFragment != null){
+                fragmentTransaction.remove(mKnowledgeTreeFragment!!)
+            }
+            if (mWeChatFragment != null){
+                fragmentTransaction.remove(mWeChatFragment!!)
+            }
+            if (mNavigationFragment != null){
+                fragmentTransaction.remove(mNavigationFragment!!)
+            }
+            if (mProjectFragment != null){
+                fragmentTransaction.remove(mProjectFragment!!)
+            }
+            fragmentTransaction.commitAllowingStateLoss()
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
+        super.recreate()
+    }
+
+    /**
+     * 搜索菜单栏
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            R.id.action_search->{
+                Intent(this,SearchActivity::class.java).run {
+                    startActivity(this)
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    /**
+     * 2s内连续双击退出程序
+     */
+    private var mExitTime : Long = 0
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            if (System.currentTimeMillis().minus(mExitTime) <= 2000){
+                finish()
+            }else{
+                mExitTime = System.currentTimeMillis()
+                showToast(getString(R.string.exit_tip))
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mHomeFragment = null
+        mKnowledgeTreeFragment = null
+        mNavigationFragment = null
+        mWeChatFragment = null
+        mProjectFragment = null
+        nav_username = null
     }
 }
