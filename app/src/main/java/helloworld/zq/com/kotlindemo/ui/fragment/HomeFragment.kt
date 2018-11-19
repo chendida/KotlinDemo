@@ -1,6 +1,8 @@
 package helloworld.zq.com.kotlindemo.ui.fragment
 
 import android.view.View
+import android.widget.ImageView
+import cn.bingoogolapple.bgabanner.BGABanner
 import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.adapter.HomeAdapter
 import helloworld.zq.com.kotlindemo.base.BaseFragment
@@ -9,6 +11,7 @@ import helloworld.zq.com.kotlindemo.mvp.model.bean.Article
 import helloworld.zq.com.kotlindemo.mvp.model.bean.ArticleResponseBody
 import helloworld.zq.com.kotlindemo.mvp.model.bean.Banner
 import helloworld.zq.com.kotlindemo.mvp.presenter.HomePresenter
+import helloworld.zq.com.kotlindemo.utils.ImageLoader
 import helloworld.zq.com.kotlindemo.widget.SpaceItemDecoration
 
 /**
@@ -52,6 +55,15 @@ class HomeFragment : BaseFragment(),HomeContract.View {
      */
     private val homeAdapter : HomeAdapter by lazy {
         HomeAdapter(activity,datas)
+    }
+
+    /**
+     * Banner Adapter
+     */
+    private val bannerAdapter : BGABanner.Adapter<ImageView,String> by lazy {
+        BGABanner.Adapter<ImageView,String>{bgaBanner,imageView,feedImageUrl,position ->
+            ImageLoader.load(activity,feedImageUrl,imageView)
+        }
     }
 
     override fun scrollToTop() {
