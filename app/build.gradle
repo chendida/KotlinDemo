@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.just.agentweb:agentweb:4.0.2'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.afollestad.material-dialogs:commons:0.9.4.4'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
     //滑动返回
     implementation 'com.cxz:swipeback:1.0.1'
     //rxJava系列
@@ -72,4 +73,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     //json解析
     implementation 'com.squareup.moshi:moshi:1.7.0'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 }

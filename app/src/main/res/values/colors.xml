@@ -17,4 +17,5 @@
     <color name="item_author">@color/textColorPrimary</color>
     <color name="item_date">#757575</color>
     <color name="item_chapter">@color/item_date</color>
+    <color name="item_pic_bg">#E0E0E0</color>
 </resources>
