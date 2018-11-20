@@ -224,6 +224,7 @@ class MainActivity : BaseActivity(),MainContract.View {
     private fun showFragment(index : Int){
         val transaction  = supportFragmentManager.beginTransaction()
         hideFragment(transaction)
+        mIndex = index
         when(index){
             FRAGMENT_HOME //首页
             -> {
