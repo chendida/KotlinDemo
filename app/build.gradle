@@ -93,4 +93,6 @@ dependencies {
     }*/
     //Banner
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
 }

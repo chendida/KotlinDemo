@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="导航"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</android.support.constraint.ConstraintLayout>
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/normal_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/navigation_tab_layout"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="match_parent"
+            android:background="@color/vertical_tab_layout_bg"
+            app:indicator_color="@color/white"
+            app:indicator_gravity="fill"
+            app:tab_height="@dimen/dp_50"
+            app:tab_margin="@dimen/dp_16"
+            app:tab_mode="scrollable" />
+
+        <View
+            android:id="@+id/navigation_divider"
+            android:layout_width="@dimen/dp_05"
+            android:layout_height="match_parent"
+            android:background="@color/item_pic_bg" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="@dimen/dp_10"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+</FrameLayout>
