@@ -5,11 +5,16 @@ import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.base.BaseFragment
 import helloworld.zq.com.kotlindemo.constant.Constant
 import helloworld.zq.com.kotlindemo.mvp.contract.KnowledgeContract
+import helloworld.zq.com.kotlindemo.mvp.model.bean.ArticleResponseBody
 
 /**
  * 公众号碎片显示的fragment
  */
 class KnowledgeFragment : BaseFragment(),KnowledgeContract.View {
+
+    override fun setKnowledgeList(articles: ArticleResponseBody) {
+    }
+
     override fun showCollectSuccess(success: Boolean) {
     }
 

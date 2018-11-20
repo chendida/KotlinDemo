@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     /**
@@ -70,4 +71,14 @@ interface ApiService {
      */
     @GET("wxarticle/chapters/json")
     fun getWXChapters() : Observable<HttpResult<MutableList<WXChapterBean>>>
+
+    /**
+     * 知识体系下的文章
+     * http://www.wanandroid.com/article/list/0/json?cid=168
+     * @param page
+     * @param cid
+     */
+    @GET("article/list/{page}/json")
+    fun getKnowledgeList(@Path("page") page : Int,@Query("cid") cid : Int) :
+            Observable<HttpResult<ArticleResponseBody>>
 }
