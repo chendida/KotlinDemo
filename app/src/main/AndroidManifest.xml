@@ -50,7 +50,8 @@
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.TodoActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
-        <activity android:name=".ui.activity.ContentActivity"></activity>
+        <activity android:name=".ui.activity.ContentActivity" />
+        <activity android:name=".ui.activity.KnowledgeActivity"></activity>
     </application>
 
 </manifest>
