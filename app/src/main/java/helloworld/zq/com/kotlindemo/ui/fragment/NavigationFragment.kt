@@ -7,6 +7,7 @@ import helloworld.zq.com.kotlindemo.base.BaseFragment
  * 导航
  */
 class NavigationFragment : BaseFragment() {
+
     companion object {
         fun getInstance() : NavigationFragment = NavigationFragment()
     }

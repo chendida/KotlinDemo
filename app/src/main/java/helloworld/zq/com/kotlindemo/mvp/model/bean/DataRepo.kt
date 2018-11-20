@@ -94,3 +94,10 @@ data class WXChapterBean(
     @Json(name = "userControlSetTop") val userControlSetTop : Boolean,
     @Json(name = "visible") val visible: Int
 )
+
+// 导航
+data class NavigationBean(
+    val articles : MutableList<Article>,
+    val cid : Int,
+    val name: String
+)

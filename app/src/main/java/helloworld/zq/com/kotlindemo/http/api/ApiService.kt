@@ -81,4 +81,11 @@ interface ApiService {
     @GET("article/list/{page}/json")
     fun getKnowledgeList(@Path("page") page : Int,@Query("cid") cid : Int) :
             Observable<HttpResult<ArticleResponseBody>>
+
+    /**
+     * 导航数据
+     * http://www.wanandroid.com/navi/json
+     */
+    @GET("navi/json")
+    fun getNavigationList() : Observable<HttpResult<List<NavigationBean>>>
 }
