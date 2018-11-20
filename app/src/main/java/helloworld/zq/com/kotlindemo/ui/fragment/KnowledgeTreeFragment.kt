@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.adapter.KnowledgeTreeAdapter

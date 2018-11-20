@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatDelegate
+import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -179,7 +180,7 @@ class MainActivity : BaseActivity(),MainContract.View {
                 mHomeFragment?.scrollToTop()
             }
             FRAGMENT_KNOWLEDGE -> {
-                //mKnowledgeTreeFragment?.scrollToTop()
+                mKnowledgeTreeFragment?.scrollToTop()
             }
             FRAGMENT_NAVIGATION -> {
                 //mNavigationFragment?.scrollToTop()
@@ -188,7 +189,7 @@ class MainActivity : BaseActivity(),MainContract.View {
                 //mProjectFragment?.scrollToTop()
             }
             FRAGMENT_WECHAT -> {
-                //mWeChatFragment?.scrollToTop()
+                mWeChatFragment?.scrollToTop()
             }
         }
     }
