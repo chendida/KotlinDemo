@@ -58,5 +58,5 @@ interface ApiService {
      * @param pageNum
      */
     @GET("article/list/{pageNum}/json")
-    fun getArticles(@Path("pageNem") pageNum : Int) : Observable<HttpResult<ArticleResponseBody>>
+    fun getArticles(@Path("pageNum") pageNum : Int) : Observable<HttpResult<ArticleResponseBody>>
 }

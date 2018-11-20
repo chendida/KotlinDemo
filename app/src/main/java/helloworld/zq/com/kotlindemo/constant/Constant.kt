@@ -21,4 +21,17 @@ object Constant {
         const val SEE_TODO_TYPE_KEY = "see_todo_type_key"
         const val EDIT_TODO_TYPE_KEY = "edit_todo_type_key"
     }
+
+    /**
+     * url key
+     */
+    const val CONTENT_URL_KEY = "url"
+    /**
+     * title key
+     */
+    const val CONTENT_TITLE_KEY = "title"
+    /**
+     * id key
+     */
+    const val CONTENT_ID_KEY = "id"
 }

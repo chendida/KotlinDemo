@@ -33,6 +33,17 @@ android {
         disable 'GoogleAppIndexingWarning'
         baseline file("lint-baseline.xml") // your choice of filename/path here
     }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+        }  
+    }
 }
 
 dependencies {
@@ -64,7 +75,7 @@ dependencies {
     //rxJava系列
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'org.jetbrains.anko:anko:0.10.7'
+    implementation 'org.jetbrains.anko:anko:0.10.8'
     //retrofit系列
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'
@@ -76,6 +87,10 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
+    /*implementation 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation ('com.github.bumptech.glide:okhttp3-integration:4.8.0'){
+        exclude group: 'glide-parent'
+    }*/
     //Banner
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 }

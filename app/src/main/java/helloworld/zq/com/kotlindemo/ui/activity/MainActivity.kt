@@ -176,7 +176,7 @@ class MainActivity : BaseActivity(),MainContract.View {
     private val onFABClickListener = View.OnClickListener {
         when (mIndex) {
             FRAGMENT_HOME -> {
-                //mHomeFragment?.scrollToTop()
+                mHomeFragment?.scrollToTop()
             }
             FRAGMENT_KNOWLEDGE -> {
                 //mKnowledgeTreeFragment?.scrollToTop()
