@@ -63,4 +63,11 @@ interface ApiService {
      */
     @GET("tree/json")
     fun getKnowledgeTree() : Observable<HttpResult<List<KnowledgeTreeBody>>>
+
+    /**
+     * 获取公众号列表
+     * http://wanandroid.com/wxarticle/chapters/json
+     */
+    @GET("wxarticle/chapters/json")
+    fun getWXChapters() : Observable<HttpResult<MutableList<WXChapterBean>>>
 }
