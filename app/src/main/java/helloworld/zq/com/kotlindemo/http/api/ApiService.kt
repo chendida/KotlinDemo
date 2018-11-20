@@ -1,9 +1,6 @@
 package helloworld.zq.com.kotlindemo.http.api
 
-import helloworld.zq.com.kotlindemo.mvp.model.bean.Article
-import helloworld.zq.com.kotlindemo.mvp.model.bean.ArticleResponseBody
-import helloworld.zq.com.kotlindemo.mvp.model.bean.Banner
-import helloworld.zq.com.kotlindemo.mvp.model.bean.HttpResult
+import helloworld.zq.com.kotlindemo.mvp.model.bean.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -59,4 +56,11 @@ interface ApiService {
      */
     @GET("article/list/{pageNum}/json")
     fun getArticles(@Path("pageNum") pageNum : Int) : Observable<HttpResult<ArticleResponseBody>>
+
+    /**
+     * 获取知识体系
+     * http://www.wanandroid.com/tree/json
+     */
+    @GET("tree/json")
+    fun getKnowledgeTree() : Observable<HttpResult<List<KnowledgeTreeBody>>>
 }
