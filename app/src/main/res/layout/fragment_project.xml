@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/AppTheme.AppBarOverlay"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:tabGravity="center"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorHeight="@dimen/dp_2"
@@ -23,5 +23,5 @@
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior = "@string/appbar_scrolling_view_behavior"/>
+        />
 </android.support.constraint.ConstraintLayout>

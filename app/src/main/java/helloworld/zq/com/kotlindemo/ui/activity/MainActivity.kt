@@ -186,7 +186,7 @@ class MainActivity : BaseActivity(),MainContract.View {
                 mNavigationFragment?.scrollToTop()
             }
             FRAGMENT_PROJECT -> {
-                //mProjectFragment?.scrollToTop()
+                mProjectFragment?.scrollToTop()
             }
             FRAGMENT_WECHAT -> {
                 mWeChatFragment?.scrollToTop()
