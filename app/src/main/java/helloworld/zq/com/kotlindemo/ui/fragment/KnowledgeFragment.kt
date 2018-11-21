@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import helloworld.zq.com.kotlindemo.App
 import helloworld.zq.com.kotlindemo.R
@@ -22,7 +21,8 @@ import helloworld.zq.com.kotlindemo.utils.NetWorkUtil
 import helloworld.zq.com.kotlindemo.utils.showSnackMsg
 import helloworld.zq.com.kotlindemo.utils.showToast
 import helloworld.zq.com.kotlindemo.widget.SpaceItemDecoration
-import kotlinx.android.synthetic.main.fragment_knowledge.*
+import kotlinx.android.synthetic.main.fragment_refresh_layout.*
+
 /**
  * 公众号碎片显示的fragment
  */
@@ -144,7 +144,7 @@ class KnowledgeFragment : BaseFragment(),KnowledgeContract.View {
             return fragment
         }
     }
-    override fun attachLayoutRes(): Int = R.layout.fragment_knowledge
+    override fun attachLayoutRes(): Int = R.layout.fragment_refresh_layout
 
     override fun initView() {
         mPresenter.attachView(this)

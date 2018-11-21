@@ -5,7 +5,6 @@ import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
@@ -28,7 +27,7 @@ import helloworld.zq.com.kotlindemo.utils.showSnackMsg
 import helloworld.zq.com.kotlindemo.utils.showToast
 import helloworld.zq.com.kotlindemo.widget.SpaceItemDecoration
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_refresh_layout.*
 import kotlinx.android.synthetic.main.item_home_banner.view.*
 /**
  * 首页
@@ -192,7 +191,7 @@ class HomeFragment : BaseFragment(),HomeContract.View {
     companion object {
         fun getInstance() : HomeFragment = HomeFragment()
     }
-    override fun attachLayoutRes(): Int = R.layout.fragment_home
+    override fun attachLayoutRes(): Int = R.layout.fragment_refresh_layout
 
     override fun initView() {
         mPresenter.attachView(this)

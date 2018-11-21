@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.adapter.KnowledgeTreeAdapter
@@ -16,7 +15,7 @@ import helloworld.zq.com.kotlindemo.mvp.presenter.KnowledgeTreePresenter
 import helloworld.zq.com.kotlindemo.ui.activity.KnowledgeActivity
 import helloworld.zq.com.kotlindemo.utils.showToast
 import helloworld.zq.com.kotlindemo.widget.RecyclerViewItemDecoration
-import kotlinx.android.synthetic.main.fragment_knowledge.*
+import kotlinx.android.synthetic.main.fragment_refresh_layout.*
 
 /**
  * 知识体系
@@ -98,7 +97,7 @@ class KnowledgeTreeFragment : BaseFragment(),KnowledgeTreeContract.View {
     companion object {
         fun getInstance() : KnowledgeTreeFragment = KnowledgeTreeFragment()
     }
-    override fun attachLayoutRes(): Int = R.layout.fragment_knowledge
+    override fun attachLayoutRes(): Int = R.layout.fragment_refresh_layout
 
     override fun initView() {
         mPresenter.attachView(this)
