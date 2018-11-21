@@ -20,4 +20,6 @@
     <color name="item_pic_bg">#E0E0E0</color>
     <color name="color_title_bg">#CCFFFFFF</color>
     <color name="vertical_tab_layout_bg">#F5F5F5</color>
+    <color name="item_flow_layout_bg">#EEEEEE</color>
+    <color name="Grey500">#9e9e9e</color>
 </resources>

@@ -183,7 +183,7 @@ class MainActivity : BaseActivity(),MainContract.View {
                 mKnowledgeTreeFragment?.scrollToTop()
             }
             FRAGMENT_NAVIGATION -> {
-                //mNavigationFragment?.scrollToTop()
+                mNavigationFragment?.scrollToTop()
             }
             FRAGMENT_PROJECT -> {
                 //mProjectFragment?.scrollToTop()
