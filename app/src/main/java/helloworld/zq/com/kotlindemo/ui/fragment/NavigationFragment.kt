@@ -3,7 +3,6 @@ package helloworld.zq.com.kotlindemo.ui.fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import helloworld.zq.com.kotlindemo.R
 import helloworld.zq.com.kotlindemo.adapter.NavigationAdapter
 import helloworld.zq.com.kotlindemo.adapter.NavigationTabAdapter
