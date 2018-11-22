@@ -10,8 +10,7 @@ import io.reactivex.Observable
 
 class HomeModel : CommonModel() {
     fun requestBanner() : Observable<HttpResult<List<Banner>>>{
-        return RetrofitHelper.service
-                .getBanners()
+        return RetrofitHelper.service.getBanners()
                 .compose(SchedulerUtils.ioToMain())
     }
 

@@ -112,3 +112,14 @@ data class ProjectTreeBean(
         @Json(name = "parentChapterId") val parentChapterId: Int,
         @Json(name = "visible") val visible: Int
 )
+
+//登录数据
+data class LoginData(
+        @Json(name = "username") val username : String,
+        @Json(name = "password") val password : String,
+        @Json(name = "collectIds") val collectIds : List<Any>,
+        @Json(name = "icon") val icon : String,
+        @Json(name = "id") val id : Int,
+        @Json(name = "type") val type : Int,
+        @Json(name = "email") val email : String
+)

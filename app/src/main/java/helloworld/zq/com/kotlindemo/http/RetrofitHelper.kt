@@ -8,6 +8,7 @@ import helloworld.zq.com.kotlindemo.BuildConfig
 import helloworld.zq.com.kotlindemo.constant.Constant
 import helloworld.zq.com.kotlindemo.constant.HttpConstant
 import helloworld.zq.com.kotlindemo.http.api.ApiService
+import helloworld.zq.com.kotlindemo.http.log.MyLogger
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,7 +46,7 @@ object RetrofitHelper {
      */
     private fun getOkHttpClient(): OkHttpClient{
         val builder = OkHttpClient().newBuilder()
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        val httpLoggingInterceptor = HttpLoggingInterceptor(MyLogger())
         if (BuildConfig.DEBUG){
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         }else{

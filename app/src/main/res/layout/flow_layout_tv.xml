@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp_5"
-    android:background="@color/item_pic_bg"
+    android:background="@drawable/item_flow_selector"
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"

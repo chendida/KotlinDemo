@@ -2,10 +2,7 @@ package helloworld.zq.com.kotlindemo.http.api
 
 import helloworld.zq.com.kotlindemo.mvp.model.bean.*
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
     /**
@@ -104,4 +101,15 @@ interface ApiService {
      */
     @GET("project/list/{page}/json")
     fun getProjectList(@Path("page") page: Int,@Query("cid") cid: Int) : Observable<HttpResult<ArticleResponseBody>>
+
+    /**
+     * 登录
+     * http://www.wanandroid.com/user/login
+     * @param username
+     * @param password
+     */
+    @POST("user/login")
+    @FormUrlEncoded
+    fun loginWanKotlin(@Field("username") username : String,
+                       @Field("password") password : String) : Observable<HttpResult<LoginData>>
 }
