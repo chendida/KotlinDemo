@@ -51,4 +51,8 @@
     <string name="register_success">注册成功</string>
     <string name="repassword_not_empty">确认密码不能为空</string>
     <string name="password_can_not_match">确认密码和密码不一致</string>
+    <string name="action_share">分享</string>
+    <string name="action_like">收藏</string>
+    <string name="action_browser">用浏览器打开</string>
+    <string name="share_article_url">%1$s分享【%2$s】：%3$s</string>
 </resources>
