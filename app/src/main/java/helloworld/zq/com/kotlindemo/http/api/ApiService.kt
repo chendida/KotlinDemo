@@ -143,6 +143,6 @@ interface ApiService {
      */
     @POST("lg/uncollect/{id}/json")
     @FormUrlEncoded
-    fun removeCollectArticle(@Field("id") id: Int,
+    fun removeCollectArticle(@Path("id") id: Int,
                              @Field("originId") originId : Int = -1) : Observable<HttpResult<Any>>
 }
