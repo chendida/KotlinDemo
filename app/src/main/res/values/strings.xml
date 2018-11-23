@@ -55,4 +55,8 @@
     <string name="action_like">收藏</string>
     <string name="action_browser">用浏览器打开</string>
     <string name="share_article_url">%1$s分享【%2$s】：%3$s</string>
+    <string name="collect">收藏</string>
+    <string name="edit">编辑</string>
+    <string name="add">新增</string>
+    <string name="see">查看</string>
 </resources>

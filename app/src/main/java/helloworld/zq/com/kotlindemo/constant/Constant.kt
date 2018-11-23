@@ -7,6 +7,7 @@ object Constant {
     const val USERNAME_KEY = "username"
     const val PASSWORD_KEY = "password"
     const val HAS_NETWORK_KEY = "has_network"
+    const val SEARCH_KEY = "search_key"
 
     const val TYPE_KEY = "type"
     const val BUGLY_ID = "e2d63df31f"

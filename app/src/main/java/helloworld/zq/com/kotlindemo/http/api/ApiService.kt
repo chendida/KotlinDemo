@@ -125,4 +125,24 @@ interface ApiService {
     fun registerWanKotlin(@Field("username") username: String,
                           @Field("password") password: String,
                           @Field("repassword") repassword : String) : Observable<HttpResult<LoginData>>
+
+    /**
+     *  获取收藏列表
+     *  http://www.wanandroid.com/lg/collect/list/0/json
+     *  @param page
+     */
+    @GET("lg/collect/list/{page}/json")
+    fun getCollectList(@Path("page") page: Int) : Observable<HttpResult<CollectionResponseBody<CollectionArticle>>>
+
+
+    /**
+     * 收藏列表中取消收藏文章
+     * http://www.wanandroid.com/lg/uncollect/2805/json
+     * @param id
+     * @param originId
+     */
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    fun removeCollectArticle(@Field("id") id: Int,
+                             @Field("originId") originId : Int = -1) : Observable<HttpResult<Any>>
 }
