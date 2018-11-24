@@ -59,4 +59,6 @@
     <string name="edit">编辑</string>
     <string name="add">新增</string>
     <string name="see">查看</string>
+    <string name="todo">待办</string>
+    <string name="completed">已完成</string>
 </resources>
