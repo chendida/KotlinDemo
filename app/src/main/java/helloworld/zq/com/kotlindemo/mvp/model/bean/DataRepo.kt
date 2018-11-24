@@ -152,3 +152,9 @@ data class CollectionArticle(
         @Json(name = "visible") val visible: Int,
         @Json(name = "zan") val zan: Int
 )
+
+//TODO工具 类型
+data class TodoTypeBean(
+        val type : Int,
+        val name : String
+)

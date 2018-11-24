@@ -12,6 +12,13 @@ object Constant {
     const val TYPE_KEY = "type"
     const val BUGLY_ID = "e2d63df31f"
 
+    const val TODO_TYPE = "todo_type"
+    const val TODO_BEAN = "todo_bean"
+
+    const val TODO_NO = "todo_no"
+    const val TODO_ADD = "todo_add"
+    const val TODO_DONE = "todo_done"
+
 
     object Type {
         const val COLLECT_TYPE_KEY = "collect_type"
