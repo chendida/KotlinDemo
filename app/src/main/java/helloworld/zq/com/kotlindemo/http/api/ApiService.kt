@@ -202,4 +202,18 @@ interface ApiService {
     @POST("/lg/todo/done/{id}/json")
     @FormUrlEncoded
     fun updateTodoById(@Path("id") id: Int, @Field("status") status: Int): Observable<HttpResult<Any>>
+
+    /**
+     * 更新一条Todo内容
+     * http://www.wanandroid.com/lg/todo/update/83/json
+     * @param body
+     *          title: 新增标题
+     *          content: 新增详情
+     *          date: 2018-08-01
+     *          status: 0 // 0为未完成，1为完成
+     *          type: 0
+     */
+    @POST("/lg/todo/update/{id}/json")
+    @FormUrlEncoded
+    fun updateTodo(@Path("id") id: Int, @FieldMap map: MutableMap<String, Any>): Observable<HttpResult<Any>>
 }

@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
 
+    <LinearLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_16"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textColor="@color/item_nav_color_tv"
+            android:textSize="@dimen/sp_16"/>
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@null"
+            android:hint="@string/compulsory"
+            android:maxLines="1"
+            android:textColor="@color/item_nav_color_tv"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line1"
+        app:layout_constraintTop_toBottomOf="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/item_pic_bg"/>
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        app:layout_constraintTop_toBottomOf="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_16"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textColor="@color/item_nav_color_tv"
+            android:textSize="@dimen/sp_16"/>
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="@string/non_compulsory"
+            android:inputType="text|textMultiLine"
+            android:minHeight="@dimen/dp_100"
+            android:textColor="@color/item_nav_color_tv"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line2"
+        app:layout_constraintTop_toBottomOf="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/item_pic_bg"/>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/line2"
+        android:id="@+id/layout_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_16"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:textColor="@color/item_nav_color_tv"
+            android:textSize="@dimen/sp_16"/>
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@null"
+            android:maxLines="1"
+            android:textColor="@color/item_nav_color_tv"
+            android:textSize="@dimen/sp_16"
+            android:text="2018-01-01"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line3"
+        app:layout_constraintTop_toBottomOf="@+id/layout_date"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/item_pic_bg"/>
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:background="@drawable/btn_login_bg"
+        android:gravity="center"
+        android:padding="@dimen/dp_12"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>
