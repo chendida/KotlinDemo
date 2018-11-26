@@ -2,15 +2,15 @@ package helloworld.zq.com.kotlindemo.mvp.model
 
 import helloworld.zq.com.kotlindemo.base.BaseModel
 import helloworld.zq.com.kotlindemo.http.RetrofitHelper
-import helloworld.zq.com.kotlindemo.mvp.model.bean.ArticleResponseBody
+import helloworld.zq.com.kotlindemo.mvp.model.bean.HotSearchBean
 import helloworld.zq.com.kotlindemo.mvp.model.bean.HttpResult
 import helloworld.zq.com.kotlindemo.rx.SchedulerUtils
 import io.reactivex.Observable
 
-class ProjectListModel : BaseModel(){
+class SearchModel : BaseModel(){
 
-    fun requestProjectList(page : Int,cid : Int) : Observable<HttpResult<ArticleResponseBody>>{
-        return RetrofitHelper.service.getProjectList(page,cid)
+    fun searchHotData() : Observable<HttpResult<MutableList<HotSearchBean>>>{
+        return RetrofitHelper.service.getHotSearchData()
                 .compose(SchedulerUtils.ioToMain())
     }
 }

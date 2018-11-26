@@ -7,10 +7,10 @@ import helloworld.zq.com.kotlindemo.mvp.model.bean.HttpResult
 import helloworld.zq.com.kotlindemo.rx.SchedulerUtils
 import io.reactivex.Observable
 
-class ProjectListModel : BaseModel(){
+class SearchListModel : BaseModel() {
 
-    fun requestProjectList(page : Int,cid : Int) : Observable<HttpResult<ArticleResponseBody>>{
-        return RetrofitHelper.service.getProjectList(page,cid)
+    fun queryBySearchKey(page : Int,key : String) : Observable<HttpResult<ArticleResponseBody>>{
+        return RetrofitHelper.service.queryBySearchKey(page,key)
                 .compose(SchedulerUtils.ioToMain())
     }
 }

@@ -216,4 +216,23 @@ interface ApiService {
     @POST("/lg/todo/update/{id}/json")
     @FormUrlEncoded
     fun updateTodo(@Path("id") id: Int, @FieldMap map: MutableMap<String, Any>): Observable<HttpResult<Any>>
+
+    /**
+     * 搜索热词
+     * http://www.wanandroid.com/hotkey/json
+     */
+    @GET("hotkey/json")
+    fun getHotSearchData(): Observable<HttpResult<MutableList<HotSearchBean>>>
+
+
+    /**
+     * 搜索
+     * http://www.wanandroid.com/article/query/0/json
+     * @param page
+     * @param key
+     */
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    fun queryBySearchKey(@Path("page") page: Int,
+                         @Field("k") key: String): Observable<HttpResult<ArticleResponseBody>>
 }
